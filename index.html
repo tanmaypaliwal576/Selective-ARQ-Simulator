@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Visual Selective Repeat ARQ Simulation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="status-bar">
+      <h3>Protocol Status</h3>
+      <p>Time Step: <span id="currentTime">0</span></p>
+      <p>Frames to send: <span id="packetsToSendStatus">--</span></p>
+      <p>Window Size (N): <span id="windowSizeStatus">--</span></p>
+      <p>Timeout (Steps): <span id="timeoutValueStatus">--</span></p>
+      <p>Loss Target: F<span id="lossTargetStatus">--</span></p>
+    </div>
+
+    <div class="main-container">
+      <div class="node-left">
+        <h3
+          style="
+            position: absolute;
+            top: 630px;
+            left: 90px;
+            width: 150px;
+            text-align: center;
+          "
+        >
+          Router Receiver Buffer
+        </h3>
+        <div id="receiver-buffer-vis" class="buffer-container"></div>
+      </div>
+
+      <div class="channel"></div>
+
+      <div class="router-visual">
+        <div class="router"></div>
+        <div class="router-top"></div>
+        <div class="router-arrows">
+          <div class="router-arrow"></div>
+          <div class="router-arrow" style="transform: rotate(90deg)"></div>
+          <div class="router-arrow"></div>
+          <div class="router-arrow" style="transform: rotate(-90deg)"></div>
+        </div>
+        <div class="router-label">Router</div>
+      </div>
+
+      <div class="node-right">
+        <div id="sender-buffer-vis" class="buffer-container"></div>
+
+        <div class="sender-info">
+          <div class="laptop-screen"></div>
+          <div class="laptop-body"></div>
+        </div>
+      </div>
+
+      <h3
+        style="
+          position: absolute;
+          top: 620px;
+          right: 60px;
+          width: 150px;
+          text-align: center;
+        "
+      >
+        Red Node's Send Buffer
+      </h3>
+    </div>
+
+    <div class="legend-container">
+      <h3>Packet Legend</h3>
+      <div class="legend-item">
+        <div class="legend-color color-acked"></div>
+        Delivered/ACKed (History)
+      </div>
+      <div class="legend-item">
+        <div class="legend-color color-ready"></div>
+        Packets not yet sent (Ready)
+      </div>
+      <div class="legend-item">
+        <div class="legend-color color-sent"></div>
+        Packets sent but not acknowledged
+      </div>
+      <div class="legend-item">
+        <div class="legend-color color-buffered"></div>
+        Buffered (Sent/Received but not in order)
+      </div>
+      <div class="legend-item">
+        <div class="legend-color color-window"></div>
+        Current Window/Expected Slot
+      </div>
+    </div>
+
+    <div class="user-controls">
+      <div>
+        <label for="windowSizeInput">Window Size (N)</label>
+        <input type="number" id="windowSizeInput" value="4" min="1" max="10" />
+      </div>
+      <div>
+        <label for="totalFramesInput">Total Frames</label>
+        <input type="number" id="totalFramesInput" value="8" min="2" max="16" />
+      </div>
+      <div>
+        <label for="lossTargetInput">Packet Loss (F#)</label>
+        <input type="number" id="lossTargetInput" value="4" min="0" max="15" />
+      </div>
+      <div>
+        <label for="timeoutInput">Timeout (Steps)</label>
+        <input type="number" id="timeoutInput" value="4" min="2" max="10" />
+      </div>
+    </div>
+    <div class="controls">
+      <button id="toggle-play-pause" onclick="toggleSimulation()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="white"
+          id="toggle-icon"
+        >
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </button>
+      <button onclick="resetSimulation(true)">Reset</button>
+    </div>
+
+    <div id="log-area"></div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

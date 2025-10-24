@@ -1,0 +1,430 @@
+/* --- GLOBAL AESTHETICS (Dark Gradient Theme) --- */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Applied Linear Gradient Background */
+  background-color: #0b0c10;
+  background-image: linear-gradient(
+    135deg,
+    #0b0c10 0%,
+    #171c26 50%,
+    #0b0c10 100%
+  );
+  color: #e0e0e0; /* Off-white text */
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+h3 {
+  color: #7b9ed9; /* Soft Blue Header */
+  border-bottom: 1px solid rgba(123, 158, 217, 0.3);
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+.main-container {
+  display: flex;
+  width: 95%;
+  max-width: 1400px;
+  height: 600px;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* --- Header Status Bar --- */
+.status-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px; /* Adjusted position to 20px */
+  padding: 15px;
+  background-color: rgba(20, 25, 30, 0.9);
+  border: 1px solid #333;
+  border-radius: 4px;
+  z-index: 10;
+  width: 200px; /* Consistent width */
+  font-size: 14px;
+}
+.status-bar p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+/* --- Color Legend --- */
+.legend-container {
+  position: absolute;
+  top: 20px;
+  left: 265px; /* Adjusted position for spacing */
+  width: 320px;
+  padding: 15px;
+  border: 1px solid #333;
+  background-color: #202020;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #dddddd;
+}
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #444;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+.color-acked {
+  background-color: #3f72af; /* Muted Blue */
+}
+.color-ready {
+  background-color: #ffeb3b; /* Muted Yellow */
+}
+.color-sent {
+  background-color: #8bc34a; /* Muted Green */
+}
+.color-buffered {
+  background-color: #ff9800; /* Muted Orange */
+}
+.color-window {
+  border: 2px solid #ffffff;
+  background: none;
+}
+
+/* --- Channel/Pipe & Router Styling --- */
+.channel {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 70%;
+  height: 40px;
+  transform: translateY(-50%);
+  background-color: #333; /* Simple Dark Pipe */
+  border: 1px solid #444;
+  border-radius: 5px;
+  z-index: 1;
+}
+.router-visual {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 60px;
+  perspective: 1000px;
+  z-index: 2;
+}
+.router {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #424242; /* Medium Gray */
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: rotateX(60deg) rotateZ(45deg);
+  box-shadow: 0 0 5px rgba(255, 152, 0, 0.5); /* Subtle orange accent */
+  border: 2px solid #ff9800;
+}
+.router-top {
+  background-color: #555;
+  border: 2px solid #7b9ed9;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  top: 10%;
+  left: 10%;
+  transform: scaleY(0.5);
+}
+.router-label {
+  color: #7b9ed9;
+  font-size: 16px;
+  transform: translateY(10px);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 100%;
+  left: 0;
+}
+.router-arrows {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+  align-items: center;
+  justify-items: center;
+  z-index: 3;
+}
+.router-arrow {
+  width: 20px;
+  height: 10px;
+  background-color: #8bc34a;
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%);
+  filter: drop-shadow(0 0 1px black);
+}
+.router-arrow:nth-child(1) {
+  transform: rotate(0deg);
+  margin-left: 10px;
+}
+.router-arrow:nth-child(2) {
+  transform: rotate(90deg);
+  margin-top: 5px;
+}
+.router-arrow:nth-child(3) {
+  transform: rotate(180deg);
+  margin-right: 10px;
+}
+.router-arrow:nth-child(4) {
+  transform: rotate(-90deg);
+  margin-bottom: 5px;
+}
+
+/* --- End Nodes (Receiver and Sender) --- */
+.node-left,
+.node-right {
+  position: relative;
+  z-index: 3;
+}
+.laptop-body {
+  background-color: #424242; /* Match router base */
+  width: 180px;
+  height: 100px;
+  border-radius: 8px;
+  margin-top: 250px;
+  border: 1px solid #ff9800;
+}
+.laptop-screen {
+  background-color: #1a1a1a;
+  height: 60px;
+  border-radius: 5px 5px 0 0;
+  border-top: 1px solid #7b9ed9;
+}
+
+.sender-info {
+  position: absolute;
+  bottom: 20px;
+  right: 150px;
+  text-align: center;
+}
+
+/* --- Packet Buffer Styling --- */
+.buffer-container {
+  position: absolute;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  border: 1px solid #424242;
+  height: 280px;
+  display: flex;
+  flex-direction: column-reverse;
+  /* Added Scrollbar Properties */
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  top: 320px;
+}
+
+#receiver-buffer-vis {
+  left: 130px;
+}
+#sender-buffer-vis {
+  right: 100px;
+}
+
+.packet {
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 3px 0;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 2px;
+  border: 1px solid #333;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  color: #121212;
+}
+
+/* Pipe Connection Aesthetics */
+.pipe-vertical {
+  position: absolute;
+  background-color: #333;
+  width: 40px;
+  z-index: 0;
+}
+#pipe-left {
+  left: 110px;
+  top: 38%;
+  height: 60px;
+  transform: translateY(-100%);
+}
+#pipe-right {
+  right: 110px;
+  top: 38%;
+  height: 60px;
+  transform: translateY(-100%);
+}
+
+/* --- Packet Status Classes --- */
+.packet.acked {
+  background-color: #3f72af;
+  border-color: #3f72af;
+  color: white;
+}
+.packet.ready {
+  background-color: #ffeb3b;
+  border-color: #ffeb3b;
+}
+.packet.sent {
+  background-color: #8bc34a;
+  border-color: #8bc34a;
+}
+.packet.buffered {
+  background-color: #ff9800;
+  border-color: #ff9800;
+}
+.packet.window-border {
+  border: 4px solid blueviolet;
+  box-sizing: border-box;
+}
+.packet.empty-slot {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+/* --- ANIMATION PAUSE CLASS --- */
+.paused {
+  transition: none !important;
+  animation-play-state: paused !important;
+}
+
+/* --- Controls & Log --- */
+/* ADJUSTED Positioning for stacked controls */
+.user-controls {
+  position: absolute;
+  bottom: 110px; /* Place above .controls */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  background: rgba(30, 30, 30, 0.8);
+  padding: 10px 20px;
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
+  border: 5px solid #22445f;
+  z-index: 20;
+  margin-bottom: 40px;
+}
+.user-controls label {
+  display: block;
+  margin-bottom: 5px;
+  color: #7b9ed9;
+  font-size: 14px;
+}
+.user-controls input {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #555;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border-radius: 3px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 50px; /* Lower position */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+  border: 1px solid #333;
+  border-top: none;
+}
+button {
+  background: none;
+  border: 1px solid #66d9ef;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  margin: 0 15px;
+  padding: 0;
+  border-radius: 4px;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+  color: white; /* Button text color is white */
+}
+button:active {
+  transform: scale(0.95);
+}
+button:hover {
+  background-color: rgba(102, 217, 239, 0.1);
+  box-shadow: 0 0 8px rgba(102, 217, 239, 0.6);
+}
+button svg {
+  fill: #e0e0e0;
+  width: 60%;
+  height: 60%;
+  margin: 20%;
+}
+#log-area {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 350px;
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #444a57;
+  padding: 10px;
+  background-color: #1a1a1a;
+  color: #8bc34a; /* Green log text */
+  font-family: monospace;
+  font-size: 12px;
+  border-radius: 4px;
+  z-index: 10;
+}
+.log-entry.error {
+  color: #ff5252;
+}
+.log-entry.success {
+  color: #66d9ef; /* Cyan for success */
+}
+
+/* --- Animated Packet (Simplified for clear, discrete travel) --- */
+.animated-packet {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  border-radius: 3px;
+  z-index: 5;
+}
+.ack-packet {
+  background-color: #ff9800;
+  border: 2px solid white;
+  color: white;
+}
+.data-packet {
+  background-color: #8bc34a;
+  color: black;
+}
