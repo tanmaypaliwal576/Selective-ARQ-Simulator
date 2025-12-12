@@ -6,6 +6,10 @@
   <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
 </p>
 
+<p align="center">
+  <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/344/external-network-computer-science-flaticons-lineal-color-flat-icons.png" width="120" />
+</p>
+
 ---
 
 ## 🚀 Live Demo  
@@ -119,11 +123,6 @@ Can be extended to compare:
 ├── main.js           # Core logic and simulation handling
 └── README.md         # Documentation
 ```
-
----
-
-## 📸 Screenshots  
-(Add screenshots here if you want. I can help style them.)
 
 ---
 
